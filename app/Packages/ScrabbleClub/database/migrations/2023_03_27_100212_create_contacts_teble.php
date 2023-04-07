@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Scrabble\Models\Contact;
+use Scrabble\Models\Member\Member;
 
 return new class extends Migration {
     /**
@@ -15,9 +16,15 @@ return new class extends Migration {
     {
         Schema::create(Contact::TABLE_NAME, static function (Blueprint $table) {
             $table->id();
-            $table->text(Contact::TYPE);
-            $table->text(Contact::VALUE);
-            $table->foreignId(Contact::MEMBER_ID)->constrained();
+            $table->unsignedBigInteger('member_id');
+            $table->foreign('member_id')
+                ->references(Member::ID)
+                ->on(Member::TABLE_NAME)
+                ->onDelete('cascade');
+            $table->string(Contact::TYPE);
+            $table->string(Contact::VALUE)
+                ->unique();
+            $table->timestamps();
         });
     }
 

@@ -7,6 +7,7 @@ import NewGame from "../Components/ScrabbleClub/NewGame.vue";
 import MemberEdit from "../Components/ScrabbleClub/Member/MemberEdit.vue";
 import GameEdit from "../Components/ScrabbleClub/Game/GameEdit.vue";
 import Dashboard from "../Components/ScrabbleClub/Dashboard/Dashboard.vue";
+import NewMember from "../Components/ScrabbleClub/Member/NewMember.vue";
 
 const routes = [
     {
@@ -43,6 +44,11 @@ const routes = [
         path: '/scrabble-club/member/edit/:id',
         name: 'MemberEdit',
         component: MemberEdit
+    },
+    {
+        path: '/scrabble-club/member/create',
+        name: 'NewMember',
+        component: NewMember
     },
     {
         path: '/scrabble-club/games/create',

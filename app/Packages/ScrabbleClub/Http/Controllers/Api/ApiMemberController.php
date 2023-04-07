@@ -41,6 +41,7 @@ class ApiMemberController extends Controller
             $queryFilter = new MemberProfileQueryFilter();
             $queryFilter->setMemberId($id);
             $member = $this->memberRepository->firstOrFail(['contacts'], $queryFilter);
+//            $member = $this->memberRepository->findById($id, ['contacts']);
 
             return response()->json(new MemberProfileJsonResource($member));
         }
@@ -56,6 +57,7 @@ class ApiMemberController extends Controller
 
         public function store(MemberStoreRequest $request): JsonResponse
         {
+            $dto = $request->getDto();
             $member = $this->memberService->createNew($request->getDto());
             return response()->json($member, 201);
         }

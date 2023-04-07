@@ -14,7 +14,11 @@ class MemberService
     public function createNew(MemberDto $memberDto): Member
     {
         $model = new Member($memberDto->toArray());
-        return $this->memberRepository->store($model);
+        $model = $this->memberRepository->store($model);
+
+        $this->memberRepository->addContacts($model, $memberDto->contacts);
+
+        return $model;
     }
 
     public function updateById(MemberDto $memberDto, int $id): Member

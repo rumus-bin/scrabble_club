@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Scrabble\Http\Controllers\Api\ApiDashboardController;
 use Scrabble\Http\Controllers\Api\ApiGamesController;
 use Scrabble\Http\Controllers\Api\ApiMemberController;
+use Scrabble\Http\Controllers\Api\Contact\ApiContactController;
 
 Route::prefix('scrabble/api')->group(static function () {
     Route::prefix('dashboard')->group(static function () {
@@ -26,5 +27,9 @@ Route::prefix('scrabble/api')->group(static function () {
         Route::get('/', [ApiMemberController::class, 'index']);
         Route::put('/{id}', [ApiMemberController::class, 'update']);
         Route::delete('/{id}', [ApiMemberController::class, 'delete']);
+    });
+
+    Route::prefix('contacts')->group(static function () {
+        Route::get('/types', [ApiContactController::class, 'types']);
     });
 });
