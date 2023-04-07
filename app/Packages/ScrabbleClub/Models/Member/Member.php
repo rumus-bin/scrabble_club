@@ -23,6 +23,7 @@ class Member extends BaseModel
     public const NAME = 'name';
     public const SURNAME = 'surname';
     public const JOINED_IN = 'joined_in';
+    public const CONTACTS = 'contacts';
 
     protected $table = self::TABLE_NAME;
 

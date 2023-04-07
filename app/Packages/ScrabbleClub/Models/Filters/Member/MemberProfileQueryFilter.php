@@ -28,7 +28,7 @@ class MemberProfileQueryFilter implements QueryModifierInterface
             DB::raw('SUM(CASE WHEN games.first_player_id = members.id AND games.first_player_score < games.second_player_score THEN 1 WHEN games.second_player_id = members.id AND games.second_player_score < games.first_player_score THEN 1 ELSE 0 END) as games_lost')
         )
             ->where('members.id', $this->memberId)
-            ->join('games', function ($join) {
+            ->leftJoin('games', function ($join) {
             $join->on('members.id', '=', 'games.first_player_id')
                 ->orOn('members.id', '=', 'games.second_player_id');
         })
