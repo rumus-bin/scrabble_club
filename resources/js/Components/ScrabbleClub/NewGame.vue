@@ -15,12 +15,11 @@
                 <v-select
                     id="first_player"
                     label="Select first player"
-                    :items="filteredMembers"
+                    :items="filteredFirstMembers"
                     item-title="name"
                     item-value="id"
-                    variant="solo"
-                    @update:modelValue="onSelectMember"
                     v-model="newGame.first_player_id"
+                    variant="solo"
                 ></v-select>
             </div>
             <div class="mb-4 w-1/2">
@@ -30,11 +29,10 @@
                 <v-select
                     id="second_player"
                     label="Select second player"
-                    :items="filteredMembers"
+                    :items="filteredSecondMembers"
                     item-title="name"
                     item-value="id"
                     variant="solo"
-                    @update:modelValue="onSelectMember"
                     v-model ="newGame.second_player_id"
                 ></v-select>
             </div>
@@ -72,19 +70,17 @@ const newGame = reactive({
     second_player_score: ''
 });
 const members = reactive([]);
-const selectedMemberId = ref(0);
 
-const filteredMembers = computed(() => {
+const filteredFirstMembers = computed(() => {
     return members.filter(member => {
-        return member.id !== selectedMemberId.value
+        return member.id !== newGame?.second_player_id;
     });
 });
-
-
-
-const onSelectMember = memberId => {
-    selectedMemberId.value = memberId;
-};
+const filteredSecondMembers = computed(() => {
+    return members.filter(member => {
+        return member.id !== newGame.first_player_id;
+    });
+});
 
 const getMembers = () => {
     axios.get('/scrabble/api/members')
