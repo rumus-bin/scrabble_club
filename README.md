@@ -49,16 +49,30 @@ You can create, edit, and delete members and games using the web interface. The 
 
 ## Development
 
+For the convenience of executing commands, a `Makefile` has been added to the inside of the docker container. 
+Using directives written in the makefile you can control the environment using the simplified command aliases described 
+in the makefile. 
+In order to raise the docker containers with the project, 
+    run command: `make up`
+To install all project dependencies, run the following command:
+    `make install`
+In order to stop the docker containers with the project,
+    run command: `make down`
+In order to enter the docker container with the project,
+    run command: `make enter`
+
+You can also see other commands if you open the `Makefile` directly.
+
 I recommend using the Docker functionality to deploy the project, then you can be sure of the appropriate environment
 to avoid unexpected errors in the project.
 To do this, enter the project directory and run the command:
 
-docker-compose up -d
+`docker-compose up -d`
 
 after the download, creation and launch of the docker container is completed, you can enter the docker container with 
 this application and execute the following commands already inside it.
 To do this, run the command:
- docker exec -ti provalido-provalido.test_app-1 bash
+ `docker exec -ti provalido-provalido.test_app-1 bash`
 
 
 Or you can do the actions using the functionality of the sail package and PHP, Node and NPM installed in your system
@@ -67,20 +81,20 @@ To develop the application, you can use the following commands:
 
 - Start the application:
 
-./vendor/bin/sail up -d
+`./vendor/bin/sail up -d`
 
 - Stop the application:
 
-./vendor/bin/sail down  -v
+`./vendor/bin/sail down  -v`
 
 
 - Compile assets:
 
-npm run dev
+`npm run dev`
 
 - Watch assets:
 
-npm run watch
+`npm run watch`
 
 ## Credits
 
